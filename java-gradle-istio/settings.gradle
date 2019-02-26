@@ -1,0 +1,3 @@
+rootProject.name = 'istio-java-microservices'
+
+include "time-microservice", "calc-microservice", "storage-microservice", "utils"
