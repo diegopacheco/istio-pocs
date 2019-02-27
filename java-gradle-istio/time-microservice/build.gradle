@@ -1,3 +1,27 @@
+apply plugin: 'war'
+apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
+
+sourceCompatibility = 1.8
+
+repositories {
+  mavenCentral()
+}
+
 dependencies {
-    implementation project(':utils')
+    compile project(':utils')
+
+    compile 'javax.ws.rs:javax.ws.rs-api:2.1'
+    compile 'org.glassfish.jersey.containers:jersey-container-jetty-servlet:2.26-b09'
+    compile 'org.glassfish.jersey.containers:jersey-container-jetty-http:2.26-b09'
+    compile 'org.glassfish.jersey.containers:jersey-container-servlet:2.26-b09'
+    compile 'org.glassfish.jersey.inject:jersey-hk2:2.26-b09'
+    compile 'org.glassfish.jersey.core:jersey-server:2.26-b09'
+    compile 'org.glassfish.jersey.core:jersey-common:2.26-b09'
+    compile 'org.eclipse.jetty:jetty-webapp:9.4.3.v20170317'
+    compile 'org.glassfish.jersey.media:jersey-media-json-jackson:2.26-b09'
+}
+
+gretty {
+    httpPort = 8080
+    contextPath = '/'
 }

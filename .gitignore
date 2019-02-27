@@ -1,3 +1,6 @@
+## VS code ignore
+.vscode/
+
 # Compiled class file
 *.class
 
