@@ -30,3 +30,30 @@ gretty {
     contextPath = '/'
     servletContainer = 'jetty9.4'
 }
+
+task('bakeDocker') {
+    doLast {
+      exec {
+          workingDir '.'
+          commandLine "sh", "-c", "docker build -t ip-timems ."
+      }
+    }
+}
+
+task('runDocker') {
+    doLast {
+      exec {
+          workingDir '.'
+          commandLine "sh", "-c", "docker run --rm --name ip-timems -p 8080:8080 ip-timems"
+      }
+    }
+}
+
+task('stopDocker') {
+    doLast {
+      exec {
+          workingDir '.'
+          commandLine "sh", "-c", "docker stop ip-timems"
+      }
+    }
+}
