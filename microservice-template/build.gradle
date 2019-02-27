@@ -1,16 +1,39 @@
+buildscript {
+        ext {
+            springBootVersion =  "2.1.3.RELEASE"
+            springCloudVersion = "Greenwich.RELEASE"
+        }
+        repositories {
+            mavenCentral()
+        }
+        dependencies {
+            classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        }
+}
+
 subprojects {
+
     apply plugin: 'java'
     apply plugin: 'eclipse'
+    apply plugin: 'io.spring.dependency-management'
+    
+    group   = "com.github.diegopacheco.istio.pocs.template"
+    version = "1.0-SNAPSHOT"
 
     repositories {
        mavenCentral()
+       jcenter()
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        }
     }
 
     dependencies {
-        testImplementation 'junit:junit:4.12'
+        testImplementation "junit:junit:4.12"
     }
-
-    version = '1.0'
 
     jar {
         manifest.attributes provider: 'gradle'

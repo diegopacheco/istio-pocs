@@ -1,3 +1,3 @@
 rootProject.name = 'microservice-template'
 
-include "microservice-contract", "microservice-impl", "microservice-dao", "microservice-st", "microservice-it", "microservice-war", "microservice-deploy"
+include "microservice-contract", "microservice-impl", "microservice-dao", "microservice-st", "microservice-it", "microservice-war", "microservice-driver", "microservice-deploy"
