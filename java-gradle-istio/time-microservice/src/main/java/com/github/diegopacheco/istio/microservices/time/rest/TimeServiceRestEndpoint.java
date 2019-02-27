@@ -1,18 +1,19 @@
 package com.github.diegopacheco.istio.microservices.time.rest;
 
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.github.diegopacheco.istio.microservices.time.service.SimpleTimeService;
 import com.github.diegopacheco.istio.microservices.time.service.TimeService;
 
 @Path("/")
 public class TimeServiceRestEndpoint extends Application{
 	
-	private TimeService service = new SimpleTimeService();
+	@Inject
+	private TimeService service;
 	
   @GET
   @Path("/health")
