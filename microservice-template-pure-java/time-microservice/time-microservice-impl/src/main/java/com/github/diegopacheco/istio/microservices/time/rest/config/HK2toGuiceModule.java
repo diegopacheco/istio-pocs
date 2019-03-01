@@ -3,7 +3,7 @@ package com.github.diegopacheco.istio.microservices.time.rest.config;
 import org.glassfish.hk2.api.Factory;
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
 
-import com.github.diegopacheco.istio.microservices.time.service.SimpleTimeService;
+import com.github.diegopacheco.istio.microservices.time.service.SimpleDateTimeServiceService;
 import com.google.inject.Injector;
 
 public class HK2toGuiceModule extends AbstractBinder {
@@ -16,7 +16,7 @@ public class HK2toGuiceModule extends AbstractBinder {
 
 	@Override
 	protected void configure() {
-		bindFactory(new ServiceFactory<SimpleTimeService>(guiceInjector, SimpleTimeService.class)).to(SimpleTimeService.class);
+		bindFactory(new ServiceFactory<SimpleDateTimeServiceService>(guiceInjector, SimpleDateTimeServiceService.class)).to(SimpleDateTimeServiceService.class);
 	}
 
 	private static class ServiceFactory<T> implements Factory<T> {

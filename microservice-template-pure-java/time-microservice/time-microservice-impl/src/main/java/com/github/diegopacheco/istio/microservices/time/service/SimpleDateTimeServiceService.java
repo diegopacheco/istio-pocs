@@ -5,7 +5,7 @@ import javax.inject.Singleton;
 import com.github.diegopacheco.istio.microservices.utils.DateUtils;
 
 @Singleton
-public class SimpleTimeService implements TimeService{
+public class SimpleDateTimeServiceService implements DateTimeService{
 	
 	@Override
 	public String getDate() {
