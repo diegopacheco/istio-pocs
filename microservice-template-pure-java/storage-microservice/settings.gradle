@@ -1,0 +1,3 @@
+rootProject.name = "storage-microservice"
+
+include "storage-microservice-contract", "storage-microservice-dao", "storage-microservice-deploy", "storage-microservice-driver", "storage-microservice-impl", "storage-microservice-it", "storage-microservice-st", "storage-microservice-utils", "storage-microservice-war"

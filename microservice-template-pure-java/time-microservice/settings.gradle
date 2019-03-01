@@ -1,0 +1,3 @@
+rootProject.name = "time-microservice"
+
+include "time-microservice-contract", "time-microservice-dao", "time-microservice-deploy", "time-microservice-driver", "time-microservice-impl", "time-microservice-it", "time-microservice-st", "time-microservice-utils", "time-microservice-war"

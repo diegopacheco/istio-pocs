@@ -1,0 +1,59 @@
+apply plugin: 'war'
+apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
+
+sourceCompatibility = 1.8
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+    compile project(':utils')
+
+    compile "javax.ws.rs:javax.ws.rs-api:2.1"
+    compile "org.glassfish.jersey.containers:jersey-container-jetty-servlet:${jersey2Version}"
+    compile "org.glassfish.jersey.containers:jersey-container-jetty-http:${jersey2Version}"
+    compile "org.glassfish.jersey.containers:jersey-container-servlet:${jersey2Version}"
+    compile "org.glassfish.jersey.core:jersey-server:${jersey2Version}"
+    compile "org.glassfish.jersey.core:jersey-common:${jersey2Version}"
+    compile "org.eclipse.jetty:jetty-webapp:${jetty94Version}"
+    compile "org.glassfish.jersey.media:jersey-media-json-jackson:${jersey2Version}"
+    
+    compile "com.google.inject:guice:4.2.2"
+    compile "org.glassfish.hk2:guice-bridge:2.5.0"
+    compile "org.glassfish.jersey.inject:jersey-hk2:${jersey2Version}"
+    
+}
+
+gretty {
+    httpPort = 8080
+    contextPath = '/'
+    servletContainer = 'jetty9.4'
+}
+
+task('bakeDocker') {
+    doLast {
+      exec {
+          workingDir '.'
+          commandLine "sh", "-c", "docker build -t ip-timems ."
+      }
+    }
+}
+
+task('runDocker') {
+    doLast {
+      exec {
+          workingDir '.'
+          commandLine "sh", "-c", "docker run --rm --name ip-timems -p 8080:8080 ip-timems"
+      }
+    }
+}
+
+task('stopDocker') {
+    doLast {
+      exec {
+          workingDir '.'
+          commandLine "sh", "-c", "docker stop ip-timems"
+      }
+    }
+}

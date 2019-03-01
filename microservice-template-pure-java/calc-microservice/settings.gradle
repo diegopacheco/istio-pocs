@@ -1,0 +1,3 @@
+rootProject.name = "calc-microservice"
+
+include "calc-microservice-contract", "calc-microservice-dao", "calc-microservice-deploy", "calc-microservice-driver", "calc-microservice-impl", "calc-microservice-it", "calc-microservice-st", "calc-microservice-utils", "calc-microservice-war"
