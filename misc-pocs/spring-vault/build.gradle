@@ -1,0 +1,45 @@
+plugins {
+  id "io.errorlab.gradle.vault" version "0.1.0"
+}
+
+apply plugin: 'application'
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+mainClassName = 'com.github.diegopacheco.sandbox.java.vault.VaultApp'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://oss.sonatype.org/content/groups/public/' }
+}
+
+dependencies {
+
+  compile group: 'org.springframework.vault', name: 'spring-vault-core', version: '2.1.2.RELEASE'
+  
+  compile group: 'org.springframework.cloud', name: 'spring-cloud-vault-config', version: '2.1.0.RELEASE'
+  
+  compile group: 'org.springframework.boot', name: 'spring-boot-starter', version: '2.1.2.RELEASE'
+  
+  testCompile([
+      'junit:junit:4.12'
+  ])		
+}
+
+run {    
+  systemProperties System.getProperties()
+}
+
+vault { 
+  addr = "http://localhost:8200"
+  token = "00000000-0000-0000-0000-000000000000"
+}
+
+task vaultTask {
+  doLast {
+      print "Running gradle task: vaultTask \n"
+      print "From Vault: " + project.vault.get("secret/data/test").data.data
+  }
+}
