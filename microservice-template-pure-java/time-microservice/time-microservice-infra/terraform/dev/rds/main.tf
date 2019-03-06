@@ -4,8 +4,7 @@ resource "aws_db_instance" "default" {
   engine               = "mysql"
   engine_version       = "5.7"
   instance_class       = "db.t2.micro"
-  name                 = "${var.project}-db-${var.environment}"
-  availability_zone    = "us-east-1a"
+  name                 = "${var.project}db${var.environment}"
   multi_az             = true
   username             = "root"
   password             = "${var.rdspassword}"

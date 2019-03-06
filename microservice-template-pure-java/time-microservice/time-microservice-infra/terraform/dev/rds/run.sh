@@ -1,7 +1,6 @@
 #!/bin/bash
 
-TFVARS="rdspassword=yyyyyy"
+TFVARS="rdspassword=ChAnGEME1"
 
 terraform init 
-terraform plan  -var $TFVARS
-terraform apply -var $TFVARS
+terraform apply -input=false -var $TFVARS -auto-approve

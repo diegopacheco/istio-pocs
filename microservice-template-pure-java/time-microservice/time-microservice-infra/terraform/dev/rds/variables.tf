@@ -1,8 +1,11 @@
+provider "aws" {
+  region     = "us-east-1"
+}
 variable "project" {
   default = "timemicroservice"
 }
 variable "environment" {
-  default = "dev.test"
+  default = "devtest"
 }
 variable "cluster_identifier"{
     default = "time-microservice-rds"

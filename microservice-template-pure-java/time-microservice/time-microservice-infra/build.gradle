@@ -1,2 +1,19 @@
-dependencies{
+dependencies{}
+
+task tfApply() {
+  doLast {
+     exec {
+          workingDir "$rootDir/time-microservice-infra/terraform/dev/rds"
+          executable "./run.sh"
+      }
+  }
+}
+
+task tfPlan() {
+  doLast {
+     exec {
+          workingDir "$rootDir/time-microservice-infra/terraform/dev/rds"
+          commandLine "terraform", "plan"
+      }
+  }
 }
