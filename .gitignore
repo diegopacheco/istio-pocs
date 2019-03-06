@@ -1,6 +1,8 @@
 #Terraform files
 .terraform/
 .terraform.tfstate.lock.info
+terraform.tfstate
+terraform.tfstate.backup
 
 ## VS code ignore
 .vscode/
