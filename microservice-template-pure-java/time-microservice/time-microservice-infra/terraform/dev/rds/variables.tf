@@ -7,9 +7,12 @@ variable "project" {
 variable "environment" {
   default = "devtest"
 }
+variable "layer" {
+  default = "data"
+}
 variable "cluster_identifier"{
     default = "time-microservice-rds"
 }
 variable "rdspassword"{
-  default = "xxxxxxx"
+  default = "xxx"
 }
