@@ -12,6 +12,7 @@ resource "aws_db_instance" "master" {
   parameter_group_name = "default.mysql5.7"
   skip_final_snapshot  = true
   final_snapshot_identifier = "Ignore"
+  backup_retention_period = 1 
 
   tags {
     name        = "${var.cluster_identifier}-${var.environment}"
@@ -21,7 +22,10 @@ resource "aws_db_instance" "master" {
   }
 }
 resource "aws_db_instance" "replica" {
+  name                = "${var.project}db-replica-${var.environment}"
+  identifier          = "${var.project}db-replica-${var.environment}"
   replicate_source_db = "${aws_db_instance.master.identifier}"
   allocated_storage   = 10
   instance_class      = "db.t2.micro"
+  backup_retention_period = 1
 }
