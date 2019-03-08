@@ -1,4 +1,4 @@
-resource "aws_db_instance" "default" {
+resource "aws_db_instance" "master" {
   identifier           = "${var.project}db${var.environment}"
   name                 = "${var.project}db${var.environment}"
   allocated_storage    = 10
@@ -19,4 +19,9 @@ resource "aws_db_instance" "default" {
     project     = "${var.project}"
     layer       = "${var.layer}"
   }
+}
+resource "aws_db_instance" "replica" {
+  replicate_source_db = "${aws_db_instance.master.identifier}"
+  allocated_storage   = 10
+  instance_class      = "db.t2.micro"
 }
