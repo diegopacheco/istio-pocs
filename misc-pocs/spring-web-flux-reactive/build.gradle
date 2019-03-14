@@ -1,10 +1,20 @@
-apply plugin: 'application'
-apply plugin: 'java'
+plugins {
+  id 'org.springframework.boot' version '2.1.1.RELEASE'
+  id 'java'
+  id 'application'
+}
+apply plugin: 'io.spring.dependency-management'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 mainClassName = 'com.github.diegopacheo.sandbox.java.spring.tx.TxApp'
+
+configurations {
+  compileOnly {
+    extendsFrom annotationProcessor
+  }
+}
 
 repositories {
     mavenCentral()
@@ -12,7 +22,14 @@ repositories {
 }
 
 dependencies {
-
+  
+  implementation 'org.springframework.boot:spring-boot-starter-data-redis-reactive'
+  implementation 'org.springframework.boot:spring-boot-starter-webflux'
+  compileOnly 'org.projectlombok:lombok'
+  annotationProcessor 'org.projectlombok:lombok'
+  testImplementation 'org.springframework.boot:spring-boot-starter-test'
+  testImplementation 'io.projectreactor:reactor-test'
+  
   compile group: 'org.springframework.cloud', name: 'spring-cloud-aws-jdbc',     version: '2.1.1.RELEASE'
   compile group: 'org.springframework.cloud', name: 'spring-cloud-vault-config', version: '2.1.1.RELEASE'
   compile group: 'org.springframework.boot' , name: 'spring-boot-starter'      , version: '2.1.1.RELEASE'
