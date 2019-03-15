@@ -140,6 +140,7 @@ resource "aws_launch_configuration" "default" {
 }
 
 resource "aws_autoscaling_group" "default" {
+  wait_for_capacity_timeout = "20m"
   desired_capacity     = 2
   launch_configuration = "${aws_launch_configuration.default.id}"
   max_size             = 2
