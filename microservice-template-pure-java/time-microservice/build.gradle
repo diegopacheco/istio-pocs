@@ -1,6 +1,32 @@
+buildscript {
+    repositories {
+        maven {
+            url 'https://plugins.gradle.org/m2/'
+        }
+    }
+    dependencies {
+        classpath 'com.adarshr:gradle-test-logger-plugin:1.6.0'
+    }
+}
+
 subprojects {
+    apply plugin: 'com.adarshr.test-logger'
     apply plugin: 'java'
     apply plugin: 'eclipse'
+
+    testlogger {
+        theme 'mocha'     
+        showExceptions true
+        slowThreshold 2000
+        showSummary true
+        showPassed true
+        showSkipped true
+        showFailed true
+        showStandardStreams false
+        showPassedStandardStreams true
+        showSkippedStandardStreams true
+        showFailedStandardStreams true
+    }
 
     repositories {
        mavenCentral()
