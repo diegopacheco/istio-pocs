@@ -10,6 +10,7 @@ resource "aws_db_instance" "master" {
   username             = "root"
   password             = "${var.rdspassword}"
   parameter_group_name = "default.mysql5.7"
+  publicly_accessible  = true
   skip_final_snapshot  = true
   final_snapshot_identifier = "Ignore"
   backup_retention_period = 1 
