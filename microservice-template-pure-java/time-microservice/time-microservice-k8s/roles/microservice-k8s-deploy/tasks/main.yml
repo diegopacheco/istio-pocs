@@ -1,28 +1,7 @@
-- name: Create a k8s namespace
+---
+- name: set dev namespace in k8s
   k8s:
-    name: dev
     api_version: v1
     kind: Namespace
+    name: dev
     state: present
-
-- name: Create a Service object from an inline definition
-  k8s:
-    state: present
-    definition:
-      apiVersion: v1
-      kind: Service
-      metadata:
-        name: web
-        namespace: dev
-        labels:
-          app: time-microservice
-          service: web
-      spec:
-        selector:
-          app: time-microservice
-          service: web
-        ports:
-        - protocol: TCP
-          targetPort: 8080
-          name: port-8080-tcp
-          port: 8080
