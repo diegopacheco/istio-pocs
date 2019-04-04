@@ -6,6 +6,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.adarshr:gradle-test-logger-plugin:1.6.0'
+        classpath 'com.bmuschko:gradle-docker-plugin:4.6.2'
     }
 }
 

@@ -1,4 +1,10 @@
+import com.bmuschko.gradle.docker.tasks.image.Dockerfile
+import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
+import com.bmuschko.gradle.docker.tasks.image.DockerPushImage
+import com.bmuschko.gradle.docker.DockerRegistryCredentials
+
 apply plugin: 'war'
+apply plugin: 'com.bmuschko.docker-remote-api'
 apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
 
 sourceCompatibility = 1.8
@@ -52,4 +58,39 @@ task('stopDocker') {
           commandLine "sh", "-c", "docker stop ip-timems"
       }
     }
+}
+
+task('pushDockerImage') {
+    doLast {
+      exec {
+          workingDir '.'
+          commandLine "sh", "-c", "docker push diegopacheco/time-microservice"
+      }
+    }
+}
+
+docker {
+    registryCredentials {
+        username = 'diegopacheco'
+        password = ''
+        email = 'diego.pacheco.it@gmail.com'
+    }
+}
+
+def dockerImageTAG = "diegopacheco/time-microservice"
+
+task createDockerfile(type: Dockerfile, dependsOn: build)  {
+    destFile = project.file('Dockerfile')
+    from 'jetty:9.4.12-alpine'
+    addFile("build/libs/"+project.name+"-"+version+".war", "/var/lib/jetty/webapps/root.war")
+    exposePort(8080)
+}
+
+task buildImage(type: DockerBuildImage, dependsOn: createDockerfile) {
+    inputDir = projectDir
+    tags.add(dockerImageTAG)
+}
+
+task pushImage(type: DockerPushImage, dependsOn: buildImage) {
+    imageName = dockerImageTAG
 }
