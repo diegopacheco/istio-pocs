@@ -1,0 +1,10 @@
+---
+
+- hosts: 127.0.0.1
+  become_user: root
+
+  vars:
+    myvar: 10
+
+  roles:
+  - microservice-k8s-deploy
