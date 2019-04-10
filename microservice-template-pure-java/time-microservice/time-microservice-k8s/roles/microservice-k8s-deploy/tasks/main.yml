@@ -11,3 +11,9 @@
     state: present
     namespace: dev
     src: specs/time-microservice/deployment.yml
+
+- name: Create a Service object by reading the definition from a file in k8s
+  k8s:
+    state: present
+    namespace: dev
+    src: specs/time-microservice/service.yml    
