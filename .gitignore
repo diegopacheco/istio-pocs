@@ -4,6 +4,9 @@
 terraform.tfstate
 terraform.tfstate.backup
 
+# Ansible files
+.retry
+
 ## VS code ignore
 .vscode/
 
