@@ -30,6 +30,6 @@ ansible-playbook main.yml
 
 ### Check if resources was created?
 ```bash
-alias kubectl=k
+alias k=kubectl
 k get ns dev
 ```
