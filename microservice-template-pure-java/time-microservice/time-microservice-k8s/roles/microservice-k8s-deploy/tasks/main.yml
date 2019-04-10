@@ -1,7 +1,13 @@
 ---
 - name: set dev namespace in k8s
   k8s:
+    state: present
     api_version: v1
     kind: Namespace
     name: dev
+
+- name: Create a Deployment object by reading the definition from a file in k8s
+  k8s:
     state: present
+    namespace: dev
+    src: specs/time-microservice/deployment.yml
